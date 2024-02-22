@@ -98,7 +98,15 @@ namespace StarterAssets
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
 
-#if ENABLE_INPUT_SYSTEM 
+        //Push Object
+        public Transform pushableObject; 
+        private bool isPushing = false; 
+        public float pushPower = 2.0f;
+        private Vector3 interactionPoint; 
+
+
+
+#if ENABLE_INPUT_SYSTEM
         private PlayerInput _playerInput;
 #endif
         private Animator _animator;
@@ -156,10 +164,38 @@ namespace StarterAssets
         {
             _hasAnimator = TryGetComponent(out _animator);
 
-            JumpAndGravity();
-            GroundedCheck();
-            Move();
+            if (Input.GetKeyDown(KeyCode.E) && Vector3.Distance(transform.position, pushableObject.position) < 1.5f)
+            {
+                isPushing = !isPushing;
+                interactionPoint = transform.position - pushableObject.position;
+                if (isPushing)
+                {
+                    transform.LookAt(new Vector3(pushableObject.position.x, transform.position.y, pushableObject.position.z));
+                }
+            }
+
+            if (!isPushing)
+            {
+                JumpAndGravity();
+                GroundedCheck();
+                Move();
+            }
+            else
+            {
+                PushObject();
+            }
         }
+
+        private void PushObject()
+        {
+            // Calculate the direction and strength of the push based on player input
+            Vector3 pushDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+            pushableObject.GetComponent<Rigidbody>().AddForce(pushDirection * pushPower, ForceMode.Impulse);
+
+            Vector3 desiredPosition = pushableObject.position + interactionPoint;
+            transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * 10f);
+        }
+
 
         private void LateUpdate()
         {
