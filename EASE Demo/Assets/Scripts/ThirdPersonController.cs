@@ -102,7 +102,8 @@ namespace StarterAssets
         public Transform pushableObject; 
         private bool isPushing = false; 
         public float pushPower = 2.0f;
-        private Vector3 interactionPoint; 
+        private Vector3 interactionPoint;
+        private bool pushAnim = false;
 
 
 
@@ -166,7 +167,8 @@ namespace StarterAssets
 
             if (Input.GetKeyDown(KeyCode.E) && Vector3.Distance(transform.position, pushableObject.position) < 1.5f)
             {
-                _animator.SetTrigger("Pushing");
+                pushAnim = true;
+                _animator.SetBool("Pushing", pushAnim);
                 isPushing = !isPushing;
                 interactionPoint = transform.position - pushableObject.position;
                 if (isPushing)
@@ -175,9 +177,11 @@ namespace StarterAssets
                 }
             }
 
+
             if (!isPushing)
             {
-                _animator.ResetTrigger("Pushing");
+                pushAnim = false;
+                _animator.SetBool("Pushing", pushAnim);
                 JumpAndGravity();
                 GroundedCheck();
                 Move();
