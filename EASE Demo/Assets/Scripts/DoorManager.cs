@@ -14,6 +14,7 @@ public class DoorManager : MonoBehaviour
     [SerializeField] private Transform pushCube;
     [SerializeField] private Transform targetLocation;
     [SerializeField] private float cubeDistance = 0.5f;
+    private bool conditionsMet = false;
 
     public void Start() 
     {
@@ -22,7 +23,10 @@ public class DoorManager : MonoBehaviour
 
     private void Update()
     {
-        if (Vector3.Distance(pushCube.position, targetLocation.position) < cubeDistance) 
+        if (Vector3.Distance(pushCube.position, targetLocation.position) < cubeDistance)
+            conditionsMet = true;
+
+        if(conditionsMet)
             OpenDoor();
     }
     public void OpenDoor()
