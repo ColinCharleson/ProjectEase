@@ -166,6 +166,7 @@ namespace StarterAssets
 
             if (Input.GetKeyDown(KeyCode.E) && Vector3.Distance(transform.position, pushableObject.position) < 1.5f)
             {
+                _animator.SetTrigger("Pushing");
                 isPushing = !isPushing;
                 interactionPoint = transform.position - pushableObject.position;
                 if (isPushing)
@@ -176,6 +177,7 @@ namespace StarterAssets
 
             if (!isPushing)
             {
+                _animator.ResetTrigger("Pushing");
                 JumpAndGravity();
                 GroundedCheck();
                 Move();
