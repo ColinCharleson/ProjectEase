@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mime;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -14,7 +15,11 @@ public class DoorManager : MonoBehaviour
     [SerializeField] private Transform pushCube;
     [SerializeField] private Transform targetLocation;
     [SerializeField] private float cubeDistance = 0.5f;
-    private bool conditionsMet = false;
+    public bool doorStarted = false;
+    public bool doorOpening = false;
+
+    [Header("Conditions")]
+    [SerializeField] private GameObject particles;
 
     public void Start() 
     {
@@ -23,14 +28,21 @@ public class DoorManager : MonoBehaviour
 
     private void Update()
     {
-        if (Vector3.Distance(pushCube.position, targetLocation.position) < cubeDistance)
-            conditionsMet = true;
+        if (Vector3.Distance(pushCube.position, targetLocation.position) < cubeDistance && !doorStarted)
+        {
+            StartCoroutine(OpenDoor());
+            doorStarted = true;
+        }
 
-        if(conditionsMet)
-            OpenDoor();
+        if(doorOpening)
+            this.transform.position = Vector3.Lerp(this.transform.position, endPos, Time.deltaTime * (doorSpeed/10));
     }
-    public void OpenDoor()
+    IEnumerator OpenDoor()
     {
-        this.transform.position = Vector3.Lerp(this.transform.position, endPos, Time.deltaTime * doorSpeed);
+        particles.SetActive(true);
+        doorOpening = true;
+        yield return new WaitForSeconds(doorLift * doorSpeed);
+        particles.SetActive(false);
+        doorOpening = false;
     }
 }

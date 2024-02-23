@@ -1,6 +1,7 @@
 ﻿ using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -99,6 +100,7 @@ namespace StarterAssets
         private int _animIDMotionSpeed;
 
         //Push Object
+        [Header("Pushable Object")]
         public Transform pushableObject; 
         private bool isPushing = false; 
         public float pushPower = 2.0f;
@@ -165,31 +167,28 @@ namespace StarterAssets
         {
             _hasAnimator = TryGetComponent(out _animator);
 
-            if (Input.GetKeyDown(KeyCode.E) && Vector3.Distance(transform.position, pushableObject.position) < 1.5f)
+            if (Vector3.Distance(transform.position, pushableObject.position) < 1.5f && UnityEngine.Input.GetKey(KeyCode.W) && Grounded)
             {
-                pushAnim = true;
-                _animator.SetBool("Pushing", pushAnim);
-                isPushing = !isPushing;
-                interactionPoint = transform.position - pushableObject.position;
-                if (isPushing)
-                {
-                    transform.LookAt(new Vector3(pushableObject.position.x, transform.position.y, pushableObject.position.z));
-                }
-            }
-
-
-            if (!isPushing)
-            {
-                pushAnim = false;
-                _animator.SetBool("Pushing", pushAnim);
-                JumpAndGravity();
-                GroundedCheck();
-                Move();
+                isPushing = true;
+                _animator.SetBool("Pushing", true);
+                transform.LookAt(new Vector3(pushableObject.position.x, transform.position.y, pushableObject.position.z));
+                pushableObject.transform.parent = this.gameObject.transform;
+                pushableObject.transform.rotation = Quaternion.identity;
+                MoveSpeed = 1;
+                SprintSpeed = 2;
             }
             else
             {
-                PushObject();
+                _animator.SetBool("Pushing", false);
+                pushableObject.transform.parent = null;
+                isPushing = false;
+                MoveSpeed = 2;
+                SprintSpeed = 5;
             }
+
+            JumpAndGravity();
+            GroundedCheck();
+            Move();
         }
 
         private void PushObject()
@@ -295,7 +294,7 @@ namespace StarterAssets
 
             // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is a move input rotate player when the player is moving
-            if (_input.move != Vector2.zero)
+            if (_input.move != Vector2.zero && !isPushing)
             {
                 _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
                                   _mainCamera.transform.eulerAngles.y;
