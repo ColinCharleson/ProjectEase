@@ -165,9 +165,10 @@ namespace StarterAssets
 
         private void Update()
         {
+            Debug.Log(Grounded);
             _hasAnimator = TryGetComponent(out _animator);
 
-            if (Vector3.Distance(transform.position, pushableObject.position) < 1.5f && UnityEngine.Input.GetKey(KeyCode.W) && Grounded)
+            if (Vector3.Distance(transform.position, pushableObject.position) < 1.5f && UnityEngine.Input.GetKey(KeyCode.W) && this.transform.position.y < 0f)
             {
                 isPushing = true;
                 _animator.SetBool("Pushing", true);
