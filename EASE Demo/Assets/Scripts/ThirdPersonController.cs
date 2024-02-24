@@ -167,41 +167,10 @@ namespace StarterAssets
         {
             Debug.Log(Grounded);
             _hasAnimator = TryGetComponent(out _animator);
-
-            if (Vector3.Distance(transform.position, pushableObject.position) < 1.5f && UnityEngine.Input.GetKey(KeyCode.W) && this.transform.position.y < 0f)
-            {
-                isPushing = true;
-                _animator.SetBool("Pushing", true);
-                transform.LookAt(new Vector3(pushableObject.position.x, transform.position.y, pushableObject.position.z));
-                pushableObject.transform.parent = this.gameObject.transform;
-                pushableObject.transform.rotation = Quaternion.identity;
-                MoveSpeed = 1;
-                SprintSpeed = 2;
-            }
-            else
-            {
-                _animator.SetBool("Pushing", false);
-                pushableObject.transform.parent = null;
-                isPushing = false;
-                MoveSpeed = 2;
-                SprintSpeed = 5;
-            }
-
             JumpAndGravity();
             GroundedCheck();
             Move();
         }
-
-        private void PushObject()
-        {
-            // Calculate the direction and strength of the push based on player input
-            Vector3 pushDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
-            pushableObject.GetComponent<Rigidbody>().AddForce(pushDirection * pushPower, ForceMode.Impulse);
-
-            Vector3 desiredPosition = pushableObject.position + interactionPoint;
-            transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * 10f);
-        }
-
 
         private void LateUpdate()
         {
