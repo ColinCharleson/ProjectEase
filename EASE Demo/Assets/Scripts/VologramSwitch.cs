@@ -4,8 +4,10 @@ using System.Collections;
 
 public class VologramSwitch : MonoBehaviour
 {
+    public Transform baseNPC;
     public GameObject idleVologram;
     public GameObject talkingVologram;
+    private GameObject currentState;
     public TextMeshProUGUI textComponent;
     public GameObject panel;
     public string[] lines;
@@ -13,6 +15,11 @@ public class VologramSwitch : MonoBehaviour
 
     private int index;
 
+    private void Start()
+    {
+        Destroy(currentState);
+        currentState = Instantiate(idleVologram, baseNPC.position, baseNPC.rotation, baseNPC);
+    }
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -32,8 +39,8 @@ public class VologramSwitch : MonoBehaviour
     // Call this method when you want to switch to the talking vologram
     public void SwitchToTalking()
     {
-        idleVologram.SetActive(false);
-        talkingVologram.SetActive(true);
+        Destroy(currentState);
+        currentState = Instantiate(talkingVologram, baseNPC.position, baseNPC.rotation, baseNPC);
         textComponent.text = string.Empty;
         StartDialogue();
         panel.SetActive(true);
@@ -42,8 +49,8 @@ public class VologramSwitch : MonoBehaviour
     // Call this method when you want to switch back to the idle vologram
     public void SwitchToIdle()
     {
-        talkingVologram.SetActive(false);
-        idleVologram.SetActive(true);
+        Destroy(currentState);
+        currentState = Instantiate(idleVologram, baseNPC.position, baseNPC.rotation, baseNPC);
         panel.SetActive(false);
     }
     void StartDialogue()
