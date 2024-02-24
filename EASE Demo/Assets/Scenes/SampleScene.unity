@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 4773.278, g: 3104.2544, b: 2292.469, a: 1}
+  m_IndirectSpecularColor: {r: 4772.5825, g: 3103.7368, b: 2292.1292, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2268,6 +2268,114 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 0212c71537f7bca43aa48597100759b3, type: 3}
+--- !u!1 &857428598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 857428602}
+  - component: {fileID: 857428601}
+  - component: {fileID: 857428600}
+  - component: {fileID: 857428599}
+  m_Layer: 0
+  m_Name: Vologram(Talking)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &857428599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857428598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80afb95fd2a7d4b61a25a2ca9037c5a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volFolderPathType: 3
+  volFolder: Vologram/Idle
+  volVideoTexturePathType: 3
+  volVideoTexture: Vologram/Idle/IdleVolTex.mp4
+  playOnStart: 1
+  isLooping: 1
+  audioOn: 0
+  material: {fileID: 5629084884208175553, guid: 426a2785f8a940049aac2c246661cf09, type: 3}
+  textureShaderId: _MainTex
+  interfaceLoggingLevel: 0
+  avLoggingLevel: 0
+  geomLoggingLevel: 0
+--- !u!23 &857428600
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857428598}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &857428601
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857428598}
+  m_Mesh: {fileID: 0}
+--- !u!4 &857428602
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857428598}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.85692954, z: -0, w: 0.5154336}
+  m_LocalPosition: {x: -2.67, y: 0.898, z: 1.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 117.947, z: 0}
 --- !u!1001 &872552417
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8524,7 +8632,7 @@ GameObject:
   - component: {fileID: 1404633509}
   - component: {fileID: 1404633508}
   m_Layer: 0
-  m_Name: Vologram
+  m_Name: Vologram(Idle)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20005,7 +20113,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3893294197879345259, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       insertIndex: -1
       addedObject: {fileID: 283707509}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4416926081852918481, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2086515207}
   m_SourcePrefab: {fileID: 100100000, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
 --- !u!4 &1849760457 stripped
 Transform:
@@ -20564,6 +20675,25 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 77bc67336e0c04c40865813a0177f300, type: 3}
+--- !u!1 &2086515200 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4416926081852918481, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+  m_PrefabInstance: {fileID: 1849760456}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2086515207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086515200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e20fd8362ffaf204db7e7cc018d5f227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleVologram: {fileID: 1404633507}
+  talkingVologram: {fileID: 857428598}
 --- !u!1001 &2099918451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20724,5 +20854,6 @@ SceneRoots:
   - {fileID: 1849760456}
   - {fileID: 95887429}
   - {fileID: 1404633511}
+  - {fileID: 857428602}
   - {fileID: 1147780994}
   - {fileID: 1936836285}

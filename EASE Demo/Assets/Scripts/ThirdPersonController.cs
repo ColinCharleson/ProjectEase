@@ -1,4 +1,5 @@
 ﻿ using UnityEngine;
+using System.Collections;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
@@ -107,6 +108,9 @@ namespace StarterAssets
         private Vector3 interactionPoint;
         private bool pushAnim = false;
 
+        //Vologram Switch
+        private bool isVologramTalking = false;
+
 
 
 #if ENABLE_INPUT_SYSTEM
@@ -167,10 +171,43 @@ namespace StarterAssets
         {
             Debug.Log(Grounded);
             _hasAnimator = TryGetComponent(out _animator);
-            JumpAndGravity();
-            GroundedCheck();
-            Move();
+            if (!isVologramTalking)
+            {
+                JumpAndGravity();
+                GroundedCheck();
+                Move();
+            }
+
+            if (UnityEngine.Input.GetKeyDown(KeyCode.E))
+            {
+                ToggleVologramState();
+            }
         }
+
+        private void ToggleVologramState()
+        {
+            // Find the VologramSwitcher in the scene
+            VologramSwitcher switcher = FindObjectOfType<VologramSwitcher>();
+            if (switcher != null)
+            {
+                // Toggle the state based on the current state
+                if (isVologramTalking)
+                {
+                    switcher.SwitchToIdle();
+                }
+                else
+                {
+                    switcher.SwitchToTalking();
+                }
+                // Flip the state flag
+                isVologramTalking = !isVologramTalking;
+            }
+            else
+            {
+                Debug.LogWarning("VologramSwitcher not found in the scene!");
+            }
+        }
+
 
         private void LateUpdate()
         {
