@@ -12,6 +12,7 @@ public class VologramSwitch : MonoBehaviour
     public GameObject panel;
     public string[] lines;
     public float textSpeed;
+    public bool isDialogueActive = false;
 
     private int index;
 
@@ -39,6 +40,7 @@ public class VologramSwitch : MonoBehaviour
     // Call this method when you want to switch to the talking vologram
     public void SwitchToTalking()
     {
+        isDialogueActive = true;
         Destroy(currentState);
         currentState = Instantiate(talkingVologram, baseNPC.position, baseNPC.rotation, baseNPC);
         textComponent.text = string.Empty;
@@ -82,6 +84,7 @@ public class VologramSwitch : MonoBehaviour
             panel.SetActive(false);
             Destroy(currentState);
             currentState = Instantiate(idleVologram, baseNPC.position, baseNPC.rotation, baseNPC);
+            isDialogueActive = false; 
         }
     }
 }

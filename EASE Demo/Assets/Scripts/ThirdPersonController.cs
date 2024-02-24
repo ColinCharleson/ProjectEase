@@ -112,6 +112,8 @@ namespace StarterAssets
         [Header("Volumetrics")]
         public Transform hintNPC;
         private bool isVologramTalking = false;
+        private VologramSwitch vologramSwitch;
+
 
 #if ENABLE_INPUT_SYSTEM
         private PlayerInput _playerInput;
@@ -165,12 +167,20 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+
+            vologramSwitch = FindObjectOfType<VologramSwitch>();
         }
 
         private void Update()
         {
             Debug.Log(Grounded);
             _hasAnimator = TryGetComponent(out _animator);
+
+            if (vologramSwitch.isDialogueActive)
+            {
+                return;
+            }
+
             if (!isVologramTalking)
             {
                 JumpAndGravity();
@@ -178,7 +188,7 @@ namespace StarterAssets
                 Move();
             }
 
-            if (UnityEngine.Input.GetKeyDown(KeyCode.E) && Vector3.Distance(this.transform.position, hintNPC.position) < 2)
+            if (UnityEngine.Input.GetKeyDown(KeyCode.E) && !vologramSwitch.isDialogueActive && Vector3.Distance(this.transform.position, hintNPC.position) < 2)
             {
                 ToggleVologramState();
             }
