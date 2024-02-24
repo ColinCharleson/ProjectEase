@@ -113,8 +113,6 @@ namespace StarterAssets
         public Transform hintNPC;
         private bool isVologramTalking = false;
 
-
-
 #if ENABLE_INPUT_SYSTEM
         private PlayerInput _playerInput;
 #endif
