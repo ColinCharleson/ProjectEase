@@ -196,9 +196,11 @@ namespace StarterAssets
                 if (isVologramTalking)
                 {
                     switcher.SwitchToIdle();
+                    
                 }
                 else
                 {
+                    this.transform.LookAt(new Vector3(hintNPC.position.x, transform.position.y, hintNPC.position.z));
                     switcher.SwitchToTalking();
                 }
                 // Flip the state flag
