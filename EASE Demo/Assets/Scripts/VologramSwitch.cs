@@ -80,8 +80,8 @@ public class VologramSwitch : MonoBehaviour
         else
         {
             panel.SetActive(false);
-            talkingVologram.SetActive(false);
-            idleVologram.SetActive(true);
+            Destroy(currentState);
+            currentState = Instantiate(idleVologram, baseNPC.position, baseNPC.rotation, baseNPC);
         }
     }
 }
