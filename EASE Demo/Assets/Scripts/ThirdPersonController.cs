@@ -109,6 +109,8 @@ namespace StarterAssets
         private bool pushAnim = false;
 
         //Vologram Switch
+        [Header("Volumetrics")]
+        public Transform hintNPC;
         private bool isVologramTalking = false;
 
 
@@ -178,7 +180,7 @@ namespace StarterAssets
                 Move();
             }
 
-            if (UnityEngine.Input.GetKeyDown(KeyCode.E))
+            if (UnityEngine.Input.GetKeyDown(KeyCode.E) && Vector3.Distance(this.transform.position, hintNPC.position) < 2)
             {
                 ToggleVologramState();
             }
@@ -187,7 +189,7 @@ namespace StarterAssets
         private void ToggleVologramState()
         {
             // Find the VologramSwitcher in the scene
-            VologramSwitcher switcher = FindObjectOfType<VologramSwitcher>();
+            VologramSwitch switcher = FindObjectOfType<VologramSwitch>();
             if (switcher != null)
             {
                 // Toggle the state based on the current state
