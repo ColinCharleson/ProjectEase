@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using StarterAssets;
 
 public class VologramSwitch : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class VologramSwitch : MonoBehaviour
     public string[] lines;
     public float textSpeed;
     public bool isDialogueActive = false;
+    public ThirdPersonController thirdPersonController;
 
     private int index;
 
@@ -84,7 +86,8 @@ public class VologramSwitch : MonoBehaviour
             panel.SetActive(false);
             Destroy(currentState);
             currentState = Instantiate(idleVologram, baseNPC.position, baseNPC.rotation, baseNPC);
-            isDialogueActive = false; 
+            isDialogueActive = false;
+            thirdPersonController.isVologramTalking = false;
         }
     }
 }

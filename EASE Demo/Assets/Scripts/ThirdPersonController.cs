@@ -111,7 +111,7 @@ namespace StarterAssets
         //Vologram Switch
         [Header("Volumetrics")]
         public Transform hintNPC;
-        private bool isVologramTalking = false;
+        public bool isVologramTalking = false;
         private VologramSwitch vologramSwitch;
 
 
