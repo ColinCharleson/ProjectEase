@@ -31665,11 +31665,21 @@ MonoBehaviour:
   textComponent: {fileID: 1305799193}
   panel: {fileID: 708783721}
   lines:
-  - Hey what are you doing here, i'm letting you know right now if you don't leave
-    you could do something you will regret.
-  - You have no idea what you're about to do huh..... if you're that determined then
-    try moving that box over there into the marked area..
-  - Well don't say I didnt warn you....
+  - 'You: What is this place? It feels... different, like there''s something more
+    here than meets the eye.'
+  - 'The Forgotten: This is a realm of forgotten dreams, where shadows dance with
+    memories long lost. But amidst the ruins, there lies a path to renewal.'
+  - 'You: Renewal? How can that be possible in a place like this?'
+  - 'The Forgotten: There is a door, ancient, concealed within the heart of this
+    forsaken structure. It holds the key to a new beginning, a chance to escape the
+    shackles of the past.'
+  - 'You: But how do we open it? I see no mechanism, no keyhole to speak of.'
+  - 'The Forgotten: Patience, weary traveler. Within this desolation lies the means
+    to unlock the door. Seek out the box located in this ruins and with each push,
+    you bring us closer to our salvation.'
+  - 'You: So, it''s a puzzle. A puzzle that leads to paradise.'
+  - 'The Forgotten: Indeed. Together, we shall unravel the mysteries of this place
+    and step into the light of a new dawn.'
   textSpeed: 0.03
   isDialogueActive: 0
   thirdPersonController: {fileID: 2086515211}
