@@ -12,6 +12,8 @@ public class EndCondition : MonoBehaviour
         {
             endUI.SetActive(true);
             Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 }
